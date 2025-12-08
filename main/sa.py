@@ -50,7 +50,7 @@ class SA:
                         assign = new_assign
                         cost = new_cost
 
-                if iter_counter % 900 == 0:
+                if iter_counter % 500 == 0:
                     load = Utils.compute_load(assign, inst["demand"], inst["F"])
                     assign = Utils.local_search_1move(inst, assign, load, open_fac)
                     cost = Utils.compute_cost(inst, open_fac, assign)
@@ -78,10 +78,10 @@ class SA:
     @staticmethod
     def multistart(inst, num_starts=10,
                    T0=8000.0,
-                   Tmin=0.0001,
-                   V=1000,
-                   reheat_threshold=500,
-                   reheat_factor=2.0):
+                   Tmin=0.00000001,
+                   V=5001,
+                   reheat_threshold=2500,
+                   reheat_factor=2.5):
 
         global_best_cost = float("inf")
         global_best_open = None
@@ -103,6 +103,6 @@ class SA:
                 global_best_cost = cost
                 global_best_open = open_fac[:]
                 global_best_assign = assign[:]
-                print(f"  ✓ Melhor custo encontrado: {cost:.2f}")
+                print(f"Melhor custo encontrado: {cost:.2f}")
 
         return global_best_open, global_best_assign, global_best_cost

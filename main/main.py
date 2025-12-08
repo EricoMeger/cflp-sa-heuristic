@@ -43,7 +43,7 @@ def main():
 
     # run_single(inst)
 
-    run_multistart(inst, runs=50)
+    run_multistart(inst, runs=75)
 
 
 main()
